@@ -1,4 +1,4 @@
-#Mon Sep 30 13:54:07 CEST 2019
-base.0=/Users/marcoturetta/Documents/university/androidproject/homework1/Task3/ScrollText/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+#Wed Oct 02 08:24:35 CEST 2019
+base.0=/Users/marcoturetta/Documents/university/androidproject/Iraliani_H01_Marco_Turetta/Task3/ScrollText/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
