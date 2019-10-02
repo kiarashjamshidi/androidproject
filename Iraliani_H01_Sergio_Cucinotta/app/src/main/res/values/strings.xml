@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Scrolling Text</string>
+    <string name="article_title">Iraliani</string>
+    <string name="article_subtitle">Sergio Marco Kia</string>
+    <string name="article_text">Sergio is a 24 year old computer engineer. He loves music, videogames and football.
+        \n\nHe recently started to produce music with Ableton, varying from lo-fi to pop and alternative music.
+        \n\nHe has brown hair but everyone in the last 2 years saw him with blonde hair.\nAt the moment Sergio is studying for the master degree in <b>Lugano</b>, thanks to an erasmus from Polimi.
+        \n\n\n\n\nMarco Turetta is a 24-year-old trainee engineer who enjoys extreme ironing, rubics cube and binge-watching boxed sets. He is Fun and helpful, but can also be very lazy and a bit impatient.
+        \n\nHe is italian who defines himself as straight. He has a degree in medicine.
+        \n\nPhysically, marco is in pretty good shape. He is average-height with pale skin, golden hair and blue eyes.
+</string>
+</resources>
