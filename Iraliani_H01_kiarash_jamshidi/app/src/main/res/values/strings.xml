@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Scrolling</string>
+    <string name="article_title">the first project</string>
+    <string name="article_subtitle">what is our group biology</string>
+    <string name="article_text">our group has three person:marco sergio and kia
+        \n\n<b>first biology is sergio</b>
+        \n\n
+        Sergio is a 24 year old computer engineer. He loves music, videogames and football. He recently started to produce music with Ableton, varying from lo-fi to pop and alternative music.
+        \n
+        \n He has brown hair but everyone in the last 2 years saw him with blonde hair. /n/n
+        \n At the moment Sergio is studying for the master degree in Lugano, thanks to an erasmus from Polimi.
+        \n\n<b>second  biology is marco</b>
+        \n\n
+        Marco Turetta is a 24-year-old trainee engineer who enjoys extreme ironing, rubics cube and binge-watching boxed sets. He is Fun and helpful, but can also be very lazy and a bit impatient.
+        \n\n
+        He is italian who defines himself as straight. He has a degree in medicine.
+        \n\n
+        Physically, marco is in pretty good shape. He is average-height with pale skin, golden hair and blue eyes.
+        \n\n<b>third  biology is kia</b>
+        \n\n
+        kia is the best
+
+    </string>
+</resources>
