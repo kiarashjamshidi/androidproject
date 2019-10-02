@@ -1,0 +1,4 @@
+#Wed Oct 02 12:20:48 CEST 2019
+base.0=/Users/kiarashjamshidi/Desktop/course university/mobile compiting/project/ScrollingText/app/build/intermediates/transforms/dexMerger/debug/8
+path.0=classes.dex
+renamed.0=classes.dex
