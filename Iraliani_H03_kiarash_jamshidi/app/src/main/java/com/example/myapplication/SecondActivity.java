@@ -4,57 +4,75 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class SecondActivity extends AppCompatActivity {
-    // Unique tag for the intent reply.
-    public static final String EXTRA_REPLY =
-            "com.example.android.twoactivities.extra.REPLY";
+    public static final String EXTRA_REPLY = "REPLY";
+    private static final String LOG_TAG = SecondActivity.class.getSimpleName();
+    private EditText Reply;
+    public  int incommon;
+    public  String[] message ;
+    public  String[] common;
+    boolean check;
 
-    // EditText for the reply.
-    private EditText mReply;
-
-    /**
-     * Initializes the activity.
-     *
-     * @param savedInstanceState The current state data
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-
-        // Initialize view variables.
-        mReply = findViewById(R.id.editText_second);
-
-        // Get the intent that launched this activity, and the message in
-        // the intent extra.
+        Reply = findViewById(R.id.editText_second);
+        common= new String[5];
+        message= new String[10];
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        incommon=0;
+        Log.d(LOG_TAG, ""+intent.getStringExtra(MainActivity.EXTRA_MESSAGE1));
+        for (int i=0;i<10;i++){
+            message[i]="sh";
+        }
+        message[0] = intent.getStringExtra(MainActivity.EXTRA_MESSAGE1);
+        message[1] = intent.getStringExtra(MainActivity.EXTRA_MESSAGE2);
+        message[2] = intent.getStringExtra(MainActivity.EXTRA_MESSAGE3);
+        message[3] = intent.getStringExtra(MainActivity.EXTRA_MESSAGE4);
+        message[4] = intent.getStringExtra(MainActivity.EXTRA_MESSAGE5);
+        message[5] = intent.getStringExtra(MainActivity.EXTRA_MESSAGE6);
+        message[6] = intent.getStringExtra(MainActivity.EXTRA_MESSAGE7);
+        message[7] = intent.getStringExtra(MainActivity.EXTRA_MESSAGE8);
+        message[8] = intent.getStringExtra(MainActivity.EXTRA_MESSAGE9);
+        message[9] = intent.getStringExtra(MainActivity.EXTRA_MESSAGE10);
+        for (int i=0;i<10;i++){
+            for (int j=0;j<10;j++){
+                if (message[i]==message[j]){
+                    check = true;
 
-        // Put that message into the text_message TextView
+                    for (int z=0;z<incommon;z++){
+                        if (common[z]==message[i]){
+                            check=false;
+                        }
+                        if (check){
+                            common[incommon]=message[i];
+                            incommon++;
+                        }
+                    }
+                }
+            }
+        }
+        String temp=new String();
+        for (int i=0;i<incommon;i++){
+            temp = temp +common[i];
+
+        }
         TextView textView = findViewById(R.id.text_message);
-        textView.setText(message);
+        textView.setText(temp);
     }
 
-    /**
-     * Handles the onClick for the "Reply" button. Gets the message from the
-     * second EditText, creates an intent, and returns that message back to
-     * the main activity.
-     *
-     * @param view The view (Button) that was clicked.
-     */
     public void returnReply(View view) {
-        // Get the reply message from the edit text.
-        String reply = mReply.getText().toString();
-
-        // Create a new intent for the reply, add the reply message to it
-        // as an extra, set the intent result, and close the activity.
+        String reply = Reply.getText().toString();
         Intent replyIntent = new Intent();
         replyIntent.putExtra(EXTRA_REPLY, reply);
         setResult(RESULT_OK, replyIntent);
+        Log.d(LOG_TAG, "End SecondActivity");
         finish();
     }
 }
