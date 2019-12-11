@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                startActivity(new Intent(MainActivity.this, GpsPage.class));
+                startActivity(new Intent(MainActivity.this, Camera.class));
                 finish();
             }
         }, secondsDelayed * 4000);
