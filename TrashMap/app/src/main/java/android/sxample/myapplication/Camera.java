@@ -1,35 +1,109 @@
 package android.sxample.myapplication;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+
+import android.os.Bundle;
 import android.Manifest;
+import android.content.pm.PackageManager;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import android.content.DialogInterface;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+
+public class Camera extends AppCompatActivity {
+
+
+    Button mType;
+    TextView mTypesSelected;
+    String[] listTypes;
+    boolean[] checkedTypes;
+    ArrayList<Integer> mUserTypes = new ArrayList<>();
 
     private static final int PERMISSION_CODE = 1000;
     private static final int IMAGE_CAPTURE_CODE = 1001;
 
-    Button mCaptureBtn;
     ImageView mImageView;
+    Button mCaptureBtn;
 
     Uri image_uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_camera);
+
+        mType = findViewById(R.id.btnTypes);
+        mTypesSelected = findViewById(R.id.tvTypesSelected);
+
+        listTypes = getResources().getStringArray(R.array.trash_type);
+        checkedTypes = new boolean[listTypes.length];
+
+        mType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(Camera.this);
+                mBuilder.setMultiChoiceItems(listTypes, checkedTypes, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
+                        if(isChecked){
+                            mUserTypes.add(position);
+                        }else{
+                            mUserTypes.remove((Integer.valueOf(position)));
+                        }
+                    }
+                });
+
+                mBuilder.setCancelable(false);
+                mBuilder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        String type = "";
+                        for (int i = 0; i < mUserTypes.size(); i++) {
+                            type = type + listTypes[mUserTypes.get(i)];
+                            if (i != mUserTypes.size() - 1) {
+                                type = type + ", ";
+                            }
+                        }
+                        mTypesSelected.setText(type);
+                    }
+                });
+
+                mBuilder.setNegativeButton(R.string.dismiss_label, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                mBuilder.setNeutralButton(R.string.clear_all_label, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        for (int i = 0; i < checkedTypes.length; i++) {
+                            checkedTypes[i] = false;
+                            mUserTypes.clear();
+                            mTypesSelected.setText("");
+                        }
+                    }
+                });
+
+                AlertDialog mDialog = mBuilder.create();
+                mDialog.show();
+            }
+        });
+
+        //Camera
 
         mImageView = findViewById(R.id.image_view);
         mCaptureBtn = findViewById(R.id.capture_image_btn);
@@ -38,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
         mCaptureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if system os is >= marshmallow, request runtime permission
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                     if (checkSelfPermission(Manifest.permission.CAMERA) ==
                             PackageManager.PERMISSION_DENIED ||
@@ -97,7 +170,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //called when image was captured from camera
 
-        if (resultCode == RESULT_OK){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
             //set the image captured to our ImageView
             mImageView.setImageURI(image_uri);
         }

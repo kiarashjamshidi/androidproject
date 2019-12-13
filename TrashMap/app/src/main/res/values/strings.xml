@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">TrashMap</string>
+    <string name="ok_label">OK</string>
+    <string name="dismiss_label">Dismiss</string>
+    <string name="clear_all_label">Clear all</string>
+    <string name="select_trash_type">Select Trash Type </string>
+
+    <string-array name="trash_type">
+        <item>Mixed</item>
+        <item>Plastic</item>
+        <item>Glass</item>
+        <item>Organic</item>
+        <item>Paper</item>
+        <item>Metal</item>
+        <item>E-Waste</item>
+        <item>Cigarettes</item>
+    </string-array>
 </resources>
