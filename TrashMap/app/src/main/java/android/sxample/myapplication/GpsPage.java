@@ -34,8 +34,8 @@ public class GpsPage extends AppCompatActivity {
             @Override
             public void onLocationChanged(Location location) {
                 textView.append("\n " + location.getLatitude() + " " + location.getLongitude());
-//                Toast toast=Toast.makeText(this,location.getLatitude() + " " + location.getLongitude(),Toast.LENGTH_SHORT);
-//                toast
+                Toast.makeText(getApplicationContext(),location.getLatitude()+"",Toast.LENGTH_SHORT).show();
+
 
             }
 
@@ -93,7 +93,7 @@ public class GpsPage extends AppCompatActivity {
                     // for Activity#requestPermissions for more details.
                     return;
                 }
-                locationManager.requestLocationUpdates("gps", 0, 0, locationListener);
+                locationManager.requestLocationUpdates("gps", 1000, 1000, locationListener);
 
             }
         });
