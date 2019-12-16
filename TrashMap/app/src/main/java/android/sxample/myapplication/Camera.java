@@ -212,6 +212,7 @@ public class Camera extends AppCompatActivity {
                 Bundle extras = new Bundle();
 
                 if (savetheimage==null){
+                    temp++;
                     Toast.makeText(getApplicationContext(), "you must get the picture first", Toast.LENGTH_SHORT).show();
 
                 }
@@ -222,9 +223,9 @@ public class Camera extends AppCompatActivity {
 
                 }else {
 
-                    extras.putDouble("geo1", geolocation1);
-                    extras.putDouble("geo2", geolocation2);
-                    extras.putString("image", savetheimage.toString());
+                    save.putExtra("geo1", geolocation1);
+                    save.putExtra("geo2", geolocation2);
+                    save.putExtra("image", savetheimage.toString());
 
                     startActivity(save);
 

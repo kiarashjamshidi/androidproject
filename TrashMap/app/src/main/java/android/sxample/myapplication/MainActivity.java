@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
         Double geo1 = extras.getDouble("geo1");
         Double geo2 = extras.getDouble("geo2");
         Uri image = Uri.parse(extras.getString("image"));
+
+            Toast.makeText(getApplicationContext(), geo1+"", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), geo2+"", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), image+"", Toast.LENGTH_SHORT).show();
         }
 
 
