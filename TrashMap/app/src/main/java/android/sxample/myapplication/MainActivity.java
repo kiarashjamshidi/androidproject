@@ -19,9 +19,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if(extras!=null){
-        Double geo1 = extras.getDouble("geo1");
-        Double geo2 = extras.getDouble("geo2");
-        Uri image = Uri.parse(extras.getString("image"));
+
+            Double geo1 =(Double) extras.get("geo1");
+            Double geo2 =(Double) extras.get("geo2");
+            Uri image =(Uri) Uri.parse(extras.getString("image"));
+//        Double geo1 = extras.getDouble("geo1");
+//        Double geo2 = extras.getDouble("geo2");
+//        Uri image = Uri.parse(extras.getString("image"));
 
             Toast.makeText(getApplicationContext(), geo1+"", Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), geo2+"", Toast.LENGTH_SHORT).show();
