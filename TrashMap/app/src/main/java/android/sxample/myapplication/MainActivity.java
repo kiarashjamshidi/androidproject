@@ -8,12 +8,24 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
+import ketai.sensors.KetaiLocation;
+import ketai.sensors.Location;
+
 public class MainActivity extends AppCompatActivity {
+    double longitude, latitude, altitude, accuracy;
+    KetaiLocation location;
+    Location bam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bam = new Location("bam");                                    // 1
+        bam.setLatitude(40.686818);
+        bam.setLongitude(-73.977779);
+        location.getLocation().distanceTo(bam);
+
+
         int secondsDelayed = 1;
 
         Intent intent = getIntent();
@@ -27,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 //        Double geo2 = extras.getDouble("geo2");
 //        Uri image = Uri.parse(extras.getString("image"));
 
-            Toast.makeText(getApplicationContext(), geo1+"", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), location.getLocation().distanceTo(bam)+"", Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), geo2+"", Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), image+"", Toast.LENGTH_SHORT).show();
         }
