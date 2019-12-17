@@ -4,7 +4,8 @@
     <string name="dismiss_label">Dismiss</string>
     <string name="clear_all_label">Clear all</string>
     <string name="select_trash_type">Select Trash Type </string>
-
+    <string name="OK">OK</string>
+    <string name="CANCEL">CANCEL</string>
     <string-array name="trash_type">
         <item>Mixed</item>
         <item>Plastic</item>
@@ -15,4 +16,5 @@
         <item>E-Waste</item>
         <item>Cigarettes</item>
     </string-array>
+    <string name="google_maps_key">map_key</string>
 </resources>

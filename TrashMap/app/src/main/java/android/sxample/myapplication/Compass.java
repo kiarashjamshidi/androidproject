@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.hardware.SensorEventListener2;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.content.Intent;
@@ -13,6 +12,9 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import androidx.appcompat.app.AlertDialog;
+import android.content.DialogInterface;
+import com.google.android.material.snackbar.Snackbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -23,6 +25,12 @@ public class Compass extends AppCompatActivity  implements SensorEventListener {
     private float azimuth = 0f;
     private float currentazimuth =0f;
     private SensorManager mSensorManager;
+
+    private static final String[] TypeSelector = new String[]{
+            "Mixed", "Plastic", "Glass", "Organic", "Paper", "Metal", "E-Waste", "Cigarettes"
+    };
+
+    private String radioButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +48,35 @@ public class Compass extends AppCompatActivity  implements SensorEventListener {
             }
         });
 
-
     }
+
+    public void radiob(View view) {
+        int id = view.getId();
+        if (id == R.id.buttonDialog) {
+            dialogRadioButton();
+        }
+    }
+
+    private void dialogRadioButton() {
+        radioButton = TypeSelector[0];
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Select your waste type");
+        builder.setSingleChoiceItems(TypeSelector, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                radioButton = TypeSelector[i];
+            }
+        });
+        builder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Snackbar.make(imageView, "Type: " + radioButton, Snackbar.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton(R.string.CANCEL, null);
+        builder.show();
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
