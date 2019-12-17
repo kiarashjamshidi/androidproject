@@ -12,29 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnTypes2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/select_trash_type"
-            app:layout_constraintBottom_toTopOf="@+id/compass"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvTypesSelected2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/colorPrimary"
-            android:textSize="25sp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@+id/compass"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnTypes2" />
-
         <ImageView
             android:id="@+id/compass"
             android:layout_width="300dp"
