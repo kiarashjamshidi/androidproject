@@ -19,18 +19,17 @@
         <activity android:name=".Camera" />
         <activity
             android:name=".Compass"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
 
 
-
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
+        </activity>
         <activity android:name=".GpsPage" />
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
