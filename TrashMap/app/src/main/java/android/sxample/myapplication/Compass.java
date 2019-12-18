@@ -31,7 +31,7 @@ public class Compass extends AppCompatActivity  implements SensorEventListener {
     };
 
     private String radioButton;
-    private String radioButton2;
+
 
 
 

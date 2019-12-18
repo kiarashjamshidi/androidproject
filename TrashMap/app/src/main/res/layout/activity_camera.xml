@@ -10,31 +10,19 @@
     tools:context=".Camera">
 
     <Button
-        android:id="@+id/btnTypes"
+        android:id="@+id/buttonDialog2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="radiob2"
         android:text="@string/select_trash_type"
         app:layout_constraintBottom_toTopOf="@+id/image_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--Image view in which image will be set-->
 
     <!--Button to capture image-->
-
-    <TextView
-        android:id="@+id/tvTypesSelected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="25sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/image_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTypes" />
 
     <ImageView
         android:id="@+id/image_view"

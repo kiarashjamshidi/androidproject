@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -23,8 +24,8 @@ import android.widget.ImageView;
 
 import android.content.DialogInterface;
 import android.widget.TextView;
-
-import java.util.ArrayList;
+import android.content.DialogInterface;
+import com.google.android.material.snackbar.Snackbar;
 
 public class Camera extends AppCompatActivity {
     private LocationManager locationManager;
@@ -32,17 +33,11 @@ public class Camera extends AppCompatActivity {
 
 
     int temp;
-
-
-
-    Button mType;
     Button saveButton;
-    TextView mTypesSelected;
-    String[] listTypes;
-    boolean[] checkedTypes;
+
     Uri savetheimage;
     Intent save;
-    ArrayList<Integer> mUserTypes = new ArrayList<>();
+
     Double geolocation1,geolocation2;
 
     private static final int PERMISSION_CODE = 1000;
@@ -53,10 +48,16 @@ public class Camera extends AppCompatActivity {
 
     Uri image_uri;
 
+    private String radioButton2;
+    private static final String[] TypeSelector2 = new String[]{
+            "Mixed", "Plastic", "Glass", "Organic", "Paper", "Metal", "E-Waste", "Cigarettes"
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
         save=new Intent(Camera.this,MainActivity.class);
         temp = 0;
 
@@ -100,70 +101,7 @@ public class Camera extends AppCompatActivity {
 
         }
 
-        //////
-
-
-        ///////
         saveButton=findViewById(R.id.save_button);
-
-        mType = findViewById(R.id.btnTypes);
-        mTypesSelected = findViewById(R.id.tvTypesSelected);
-
-        listTypes = getResources().getStringArray(R.array.trash_type);
-        checkedTypes = new boolean[listTypes.length];
-
-        mType.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(Camera.this);
-                mBuilder.setMultiChoiceItems(listTypes, checkedTypes, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
-                        if(isChecked){
-                            mUserTypes.add(position);
-                        }else{
-                            mUserTypes.remove((Integer.valueOf(position)));
-                        }
-                    }
-                });
-
-                mBuilder.setCancelable(false);
-                mBuilder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        String type = "";
-                        for (int i = 0; i < mUserTypes.size(); i++) {
-                            type = type + listTypes[mUserTypes.get(i)];
-                            if (i != mUserTypes.size() - 1) {
-                                type = type + ", ";
-                            }
-                        }
-                        mTypesSelected.setText(type);
-                    }
-                });
-
-                mBuilder.setNegativeButton(R.string.dismiss_label, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-
-                mBuilder.setNeutralButton(R.string.clear_all_label, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        for (int i = 0; i < checkedTypes.length; i++) {
-                            checkedTypes[i] = false;
-                            mUserTypes.clear();
-                            mTypesSelected.setText("");
-                        }
-                    }
-                });
-
-                AlertDialog mDialog = mBuilder.create();
-                mDialog.show();
-            }
-        });
 
         //Camera
 
@@ -238,6 +176,33 @@ public class Camera extends AppCompatActivity {
         });
     }
 
+
+    public void radiob2(View view) {
+        int id = view.getId();
+        if (id == R.id.buttonDialog2) {
+            dialogRadioButton2();
+        }
+    }
+
+    private void dialogRadioButton2() {
+        radioButton2 = TypeSelector2[0];
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Select your waste type");
+        builder.setSingleChoiceItems(TypeSelector2, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                radioButton2 = TypeSelector2[i];
+            }
+        });
+        builder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Snackbar.make(mImageView, "Type: " + radioButton2, Snackbar.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton(R.string.CANCEL, null);
+        builder.show();
+    }
 
     private void openCamera() {
         ContentValues values = new ContentValues();
