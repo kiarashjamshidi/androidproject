@@ -31,6 +31,9 @@ public class Compass extends AppCompatActivity  implements SensorEventListener {
     };
 
     private String radioButton;
+    private String radioButton2;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,15 @@ public class Compass extends AppCompatActivity  implements SensorEventListener {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Compass.this, Camera.class);
+                startActivity(intent);
+            }
+        });
+
+        FloatingActionButton fab2 = findViewById(R.id.fab_btn2);
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Compass.this, MapActivity.class);
                 startActivity(intent);
             }
         });
