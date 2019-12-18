@@ -7,13 +7,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".Camera">
+    tools:context=".AddNewTrash">
 
     <Button
         android:id="@+id/buttonDialog2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="radiob2"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+
+
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
         android:text="@string/select_trash_type"
         app:layout_constraintBottom_toTopOf="@+id/image_view"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -46,6 +55,15 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="Capture Image"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+
+
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -61,6 +79,15 @@
         android:layout_marginEnd="162dp"
         android:layout_marginBottom="17dp"
         android:text="save"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+
+
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

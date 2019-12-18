@@ -20,10 +20,6 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 
-/**
- * Created by Vishal on 10/20/2018.
- */
-
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, TaskLoadedCallback {
     private GoogleMap mMap;
     private MarkerOptions place1, place2;

@@ -3,6 +3,8 @@ package android.sxample.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AlertDialog;
+import com.google.android.material.snackbar.Snackbar;
+import android.content.DialogInterface;
 
 import android.location.Location;
 import android.location.LocationListener;
@@ -13,7 +15,6 @@ import android.content.pm.PackageManager;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -22,43 +23,57 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.widget.ImageView;
 
-import android.content.DialogInterface;
-import android.widget.TextView;
-import android.content.DialogInterface;
-import com.google.android.material.snackbar.Snackbar;
 
-public class Camera extends AppCompatActivity {
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+public class AddNewTrash extends AppCompatActivity {
+
+
+
+
+    //////
+    private static final String TAG="ListDataActivity";
+    DatabaseHelper mDatabaseHelper;
+    String[] strings;
+
+    ///////
     private LocationManager locationManager;
     private LocationListener locationListener;
 
 
     int temp;
-    Button saveButton;
 
+
+
+    Button saveButton;
     Uri savetheimage;
     Intent save;
-
     Double geolocation1,geolocation2;
 
     private static final int PERMISSION_CODE = 1000;
     private static final int IMAGE_CAPTURE_CODE = 1001;
+    private String radioButton2;
+    private static final String[] TypeSelector2 = new String[]{
+            "Mixed", "Plastic", "Glass", "Organic", "Paper", "Metal", "E-Waste", "Cigarettes"
+    };
 
     ImageView mImageView;
     Button mCaptureBtn;
 
     Uri image_uri;
 
-    private String radioButton2;
-    private static final String[] TypeSelector2 = new String[]{
-            "Mixed", "Plastic", "Glass", "Organic", "Paper", "Metal", "E-Waste", "Cigarettes"
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
 
-        save=new Intent(Camera.this,MainActivity.class);
+        /////
+        mDatabaseHelper = new DatabaseHelper(this, "TrashDB", null, 6);
+        strings=new String[4];
+        ////
+        save=new Intent(AddNewTrash.this,Compass.class);
         temp = 0;
 
 
@@ -86,6 +101,7 @@ public class Camera extends AppCompatActivity {
 
             @Override
             public void onProviderDisabled(String provider) {
+
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivity(intent);
 
@@ -101,6 +117,10 @@ public class Camera extends AppCompatActivity {
 
         }
 
+        //////
+
+
+        ///////
         saveButton=findViewById(R.id.save_button);
 
         //Camera
@@ -161,9 +181,12 @@ public class Camera extends AppCompatActivity {
 
                 }else {
 
-                    save.putExtra("geo1", geolocation1);
-                    save.putExtra("geo2", geolocation2);
-                    save.putExtra("image", savetheimage.toString());
+
+                    strings[0]=geolocation1+"";
+                    strings[1]=geolocation2+"";
+                    strings[2]=savetheimage.toString();
+                    strings[3]="3";
+                    mDatabaseHelper.addData(strings);
 
                     startActivity(save);
 
@@ -176,6 +199,7 @@ public class Camera extends AppCompatActivity {
         });
     }
 
+    //// add the radio button
 
     public void radiob2(View view) {
         int id = view.getId();
@@ -203,6 +227,7 @@ public class Camera extends AppCompatActivity {
         builder.setNegativeButton(R.string.CANCEL, null);
         builder.show();
     }
+    ///////
 
     private void openCamera() {
         ContentValues values = new ContentValues();

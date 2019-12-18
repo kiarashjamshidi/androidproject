@@ -19,6 +19,15 @@
             android:layout_height="wrap_content"
             android:onClick="radiob"
             android:text="@string/select_trash_type"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+
+
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
             app:layout_constraintBottom_toTopOf="@+id/compass"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -38,9 +47,27 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="65dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/textView_label_distance"
+            app:layout_constraintTop_toBottomOf="@+id/compass" />
+
+        <TextView
+            android:id="@+id/textView_label_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="65dp"
+            android:text="distance from the nearest bin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/compass" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_btn2"
         android:layout_width="wrap_content"
@@ -65,3 +92,8 @@
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+

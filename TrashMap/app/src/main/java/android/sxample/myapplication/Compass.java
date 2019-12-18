@@ -46,7 +46,7 @@ public class Compass extends AppCompatActivity  implements SensorEventListener {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Compass.this, Camera.class);
+                Intent intent = new Intent(Compass.this, AddNewTrash.class);
                 startActivity(intent);
             }
         });
